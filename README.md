@@ -2,7 +2,8 @@
 
 > Portfolio writeup. The implementation is closed-source; this repository is
 > a self-contained description of what was built, why, and how. No source
-> code is included.
+> code, register map, database, customer data or deployment configuration is
+> included.
 
 A native desktop SCADA application for [Robodor](https://www.robodor.com)
 industrial door controllers (RF15 / RF30 family), monitoring **up to ~100
@@ -12,9 +13,26 @@ Built end-to-end as a two-process system: a headless Node.js polling
 service and a Tauri-based native client (macOS & Windows), both speaking a
 versioned WebSocket protocol.
 
-I designed and built the system from architecture through UI in roughly half
-a day of focused work, iterating with a colleague on requirements and visual
-direction.
+I designed and built the architecture, polling/service layer and operator UI
+as a focused internal product prototype, then shaped it toward production
+review with simulator-based validation and redaction-safe documentation.
+
+---
+
+## Public Evidence
+
+This repository is not a source mirror. It documents the parts a reviewer can
+evaluate safely:
+
+- **Architecture:** single polling source, WebSocket fan-out, snapshot diffing,
+  SQLite history and audit trail.
+- **Industrial constraints:** RS485 half-duplex serialization, LAN-only
+  deployment, multi-viewer operator screens, 24/7 control-room ergonomics.
+- **Frontend decisions:** Tauri over Electron, CSS tokens over a framework,
+  Zustand store, hand-rolled canvas sparklines, light/dark themes and TR/EN
+  localization.
+- **Disclosure boundary:** no Modbus register addresses, bit meanings, packed
+  register encoders, customer/facility names, IPs, operator logs or source code.
 
 ---
 
@@ -260,6 +278,11 @@ contract details kept inside the codebase.
 
 The architecture, tech choices, UX patterns, and engineering trade-offs
 are all in scope and described below.
+
+Screenshots are not committed by default because the operator UI can expose
+facility names, gateway addresses, slave IDs, audit rows and live production
+states. [`screenshots/README.md`](screenshots/README.md) documents the redaction
+checklist for a safe release-approved screenshot set.
 
 ---
 

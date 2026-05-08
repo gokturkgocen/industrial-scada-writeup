@@ -1,8 +1,9 @@
 # Screenshots — what to add, what to redact
 
-Add UI snapshots here as `.png` files. The README at the repo root
+Add UI snapshots here only after redaction. The README at the repo root
 references this folder; recruiters will browse them after reading the
-overview.
+overview. Prefer a wide desktop capture (**1920 × 1080** or larger), because
+the operator UI is designed for full-screen control-room monitors.
 
 ## Suggested set
 
@@ -30,9 +31,9 @@ The remaining items to review:
       column). Blank or generic ("operator.a") is fine.
 - [ ] **No real customer / facility names** if the screenshots happen
       to capture them in card aliases or window titles.
-- [ ] **Cmd-Shift-5 → Capture** at native retina; export at the size
-      you want displayed; compress with `pngcrush` or similar before
-      committing.
+- [ ] **Cmd-Shift-5 → Capture** at native retina on a wide desktop display;
+      export at the size you want displayed; compress with `pngcrush` or
+      similar before committing.
 
 ## How to take clean screenshots
 
