@@ -116,11 +116,14 @@ WebView (no Chromium bundled), and handles the cross-platform packaging well
 enough on its own. The trade-off — a Rust toolchain in the build pipeline —
 is worth the memory and disk savings for a long-running operator app.
 
-### Why not a battle-tested SCADA platform (Ignition, FactoryTalk, TIA Portal)
+### Why not an off-the-shelf SCADA platform (Ignition, FactoryTalk, TIA Portal)
 
-Each of those is a fine product but expensive, vendor-locked, and visually
-stuck in 2008. The customer's hardware, register map, and use case are simple
-enough that a focused 1-vendor solution beats a generic platform.
+Those products are strong fits for broad multi-vendor plants, but this project
+had a narrower scope: one controller family, a known LAN topology, a constrained
+Modbus TCP / RS485 path, and operators who needed a focused viewer rather than
+a general-purpose automation suite. A dedicated first-party tool kept the
+deployment smaller, the UI closer to the product, and the polling model aligned
+with the controller constraints.
 
 ---
 
@@ -289,7 +292,7 @@ checklist for a safe release-approved screenshot set.
 ## Project status
 
 In production-readiness review at the time of this writeup. Core read paths
-(polling → snapshot → WebSocket → UI) are uçtan uca working and tested
+(polling → snapshot → WebSocket → UI) are end-to-end working and tested
 against an in-process Modbus simulator at 100-card scale. Real-hardware
 on-bus validation is the next milestone; the gateway is off-the-shelf and
 the polling engine has been verified against the same Modbus TCP framing
@@ -309,8 +312,8 @@ next packaging step.
   trade-offs made during the build
 - [`docs/STACK.md`](docs/STACK.md) — every dependency, why it was chosen,
   what was rejected
-- [`screenshots/`](screenshots/) — UI snapshots (light & dark themes,
-  English & Turkish, key views)
+- [`screenshots/`](screenshots/) — redaction checklist for release-approved
+  real screenshots
 
 ---
 

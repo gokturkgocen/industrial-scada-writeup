@@ -1,9 +1,9 @@
-# Screenshots — what to add, what to redact
+# Screenshots — release checklist
 
-Add UI snapshots here only after redaction. The README at the repo root
-references this folder; recruiters will browse them after reading the
-overview. Prefer a wide desktop capture (**1920 × 1080** or larger), because
-the operator UI is designed for full-screen control-room monitors.
+No screenshots are committed by default. Add only real, release-approved UI
+captures after redaction; do not use mockups or generated visuals. Prefer a
+wide desktop capture (**1920 × 1080** or larger), because the operator UI is
+designed for full-screen control-room monitors.
 
 ## Suggested set
 
@@ -34,21 +34,3 @@ The remaining items to review:
 - [ ] **Cmd-Shift-5 → Capture** at native retina on a wide desktop display;
       export at the size you want displayed; compress with `pngcrush` or
       similar before committing.
-
-## How to take clean screenshots
-
-The simulator running locally with the redactions above produces
-realistic-looking UI without leaking anything. Two terminals:
-
-```bash
-# Terminal 1: server with simulator
-cd scada-server
-SCADA_USE_SIMULATOR=1 SCADA_SIMULATOR_SLAVES=1,2,3,4,5,6,7,8,9,10 \
-  npx tsx src/index.ts
-
-# Terminal 2: desktop
-cd scada-desktop
-npm run tauri:dev
-```
-
-Wait a few seconds for the slow-poll to fill the snapshot, then capture.
